@@ -245,13 +245,18 @@ function translatePage() {
     
     // Navigation
     document.querySelectorAll('.nav-link').forEach((link, index) => {
-        const navKeys = ['home', 'about', 'experience', 'education', 'skills', 'projects', 'contact'];
+        const navKeys = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
         if (navKeys[index]) {
             link.textContent = t.nav[navKeys[index]];
         }
     });
     
     // Hero section
+    const availableBadge = document.querySelector('.badge-text');
+    if (availableBadge) {
+        availableBadge.textContent = t.hero.availableBadge;
+    }
+    
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
         heroTitle.innerHTML = `${t.hero.greeting} <span class="highlight">${t.hero.name}</span>`;
@@ -264,7 +269,12 @@ function translatePage() {
         typeEffect();
     }
     
-    const heroBtns = document.querySelectorAll('.btn-primary');
+    const downloadCVBtn = document.getElementById('downloadCV');
+    if (downloadCVBtn) {
+        downloadCVBtn.innerHTML = `<i class="fas fa-download"></i> ${t.hero.downloadCV}`;
+    }
+    
+    const heroBtns = document.querySelectorAll('.hero-buttons .btn-secondary');
     if (heroBtns[0]) heroBtns[0].textContent = t.hero.cta1;
     if (heroBtns[1]) heroBtns[1].textContent = t.hero.cta2;
     
@@ -325,18 +335,32 @@ function translatePage() {
     const skillsTitle = document.querySelector('#skills h2');
     if (skillsTitle) skillsTitle.textContent = t.skills.title;
     
+    const skillsSubtitle = document.querySelector('#skills .section-subtitle');
+    if (skillsSubtitle) skillsSubtitle.textContent = t.skills.subtitle;
+    
+    // Translate category headers
+    const categoryHeaders = document.querySelectorAll('.category-header h3');
+    categoryHeaders.forEach((header, index) => {
+        if (t.skills.categories[index]) {
+            header.textContent = t.skills.categories[index].title;
+        }
+    });
+    
+    // Translate legend
+    const legendItems = document.querySelectorAll('.legend-item span:not(.legend-dot)');
+    if (legendItems.length >= 3 && t.skills.legend) {
+        legendItems[0].textContent = t.skills.legend.advanced;
+        legendItems[1].textContent = t.skills.legend.intermediate;
+        legendItems[2].textContent = t.skills.legend.beginner;
+    }
+    
+    // Keep old translation logic for backwards compatibility
     const skillCards = document.querySelectorAll('.skill-card');
     skillCards.forEach((card, index) => {
         if (t.skills.categories[index]) {
             const category = t.skills.categories[index];
-            card.querySelector('h3').textContent = category.title;
-            
-            const skillItems = card.querySelectorAll('.skill-item');
-            skillItems.forEach((item, i) => {
-                if (category.items[i]) {
-                    item.textContent = category.items[i];
-                }
-            });
+            const cardTitle = card.querySelector('h3');
+            if (cardTitle) cardTitle.textContent = category.title;
         }
     });
     
@@ -410,6 +434,20 @@ if (langToggle) {
 
 // Initialize language on page load
 loadLanguage();
+
+// Download CV button handler
+const downloadCVBtn = document.getElementById('downloadCV');
+if (downloadCVBtn) {
+    downloadCVBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const message = currentLang === 'pt' 
+            ? 'Currículo disponível mediante solicitação. Entre em contato via email ou LinkedIn!' 
+            : 'Resume available upon request. Please contact me via email or LinkedIn!';
+        alert(message);
+        // Scroll to contact section
+        document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+    });
+}
 
 console.log('🚀 Portfólio carregado com sucesso!');
 console.log('💡 Desenvolvido com ❤️');

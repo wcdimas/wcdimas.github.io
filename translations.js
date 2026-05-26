@@ -14,9 +14,11 @@ const translations = {
         
         // Hero Section
         hero: {
+            availableBadge: "Disponível para oportunidades",
             greeting: "Olá, sou",
             name: "Wescley Dimas",
             subtitle: "RPA Developer | Automatizando processos e otimizando resultados",
+            downloadCV: "Download CV",
             cta1: "Ver Projetos",
             cta2: "Entre em Contato",
             scroll: "Role para baixo"
@@ -116,6 +118,12 @@ const translations = {
         // Skills Section
         skills: {
             title: "Habilidades & Tecnologias",
+            subtitle: "Especializado em automação RPA e desenvolvimento backend",
+            legend: {
+                advanced: "Avançado (80%+)",
+                intermediate: "Intermediário (60-79%)",
+                beginner: "Básico (40-59%)"
+            },
             categories: [
                 {
                     title: "Plataformas RPA",
@@ -126,7 +134,7 @@ const translations = {
                     items: ["Python", "AWS (EC2, CloudWatch)", "Dramatiq", "RabbitMQ"]
                 },
                 {
-                    title: "Programação",
+                    title: "Linguagens de Programação",
                     items: ["Python", "C#", "JavaScript", "Ruby", "SQL", "Delphi"]
                 },
                 {
@@ -202,9 +210,11 @@ const translations = {
         
         // Hero Section
         hero: {
+            availableBadge: "Available for opportunities",
             greeting: "Hi, I'm",
             name: "Wescley Dimas",
             subtitle: "RPA Developer | Automating processes and optimizing results",
+            downloadCV: "Download CV",
             cta1: "View Projects",
             cta2: "Get in Touch",
             scroll: "Scroll down"
@@ -304,6 +314,12 @@ const translations = {
         // Skills Section
         skills: {
             title: "Skills & Technologies",
+            subtitle: "Specialized in RPA automation and backend development",
+            legend: {
+                advanced: "Advanced (80%+)",
+                intermediate: "Intermediate (60-79%)",
+                beginner: "Basic (40-59%)"
+            },
             categories: [
                 {
                     title: "RPA Platforms",
@@ -314,7 +330,7 @@ const translations = {
                     items: ["Python", "AWS (EC2, CloudWatch)", "Dramatiq", "RabbitMQ"]
                 },
                 {
-                    title: "Programming",
+                    title: "Programming Languages",
                     items: ["Python", "C#", "JavaScript", "Ruby", "SQL", "Delphi"]
                 },
                 {

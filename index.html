@@ -18,10 +18,10 @@
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Início</a></li>
                 <li><a href="#about" class="nav-link">Sobre</a></li>
-                <li><a href="#experience" class="nav-link">Experiência</a></li>
-                <li><a href="#education" class="nav-link">Educação</a></li>
                 <li><a href="#skills" class="nav-link">Habilidades</a></li>
+                <li><a href="#experience" class="nav-link">Experiência</a></li>
                 <li><a href="#projects" class="nav-link">Projetos</a></li>
+                <li><a href="#education" class="nav-link">Educação</a></li>
                 <li><a href="#contact" class="nav-link">Contato</a></li>
             </ul>
             <div class="language-switcher">
@@ -42,12 +42,19 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="availability-badge">
+                    <span class="pulse-dot"></span>
+                    <span class="badge-text">Disponível para oportunidades</span>
+                </div>
                 <h1 class="hero-title">
                     Olá, eu sou <span class="highlight">Wescley Dimas</span>
                 </h1>
                 <p class="hero-subtitle">RPA Developer | Automatizando processos e otimizando resultados</p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">Ver Projetos</a>
+                    <a href="#" class="btn btn-primary" id="downloadCV">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">Ver Projetos</a>
                     <a href="#contact" class="btn btn-secondary">Entre em Contato</a>
                 </div>
                 <div class="social-links">
@@ -98,6 +105,260 @@
                             <p>Plataformas RPA Dominadas</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Habilidades & Tecnologias</h2>
+            <p class="section-subtitle">Especializado em automação RPA e desenvolvimento backend</p>
+            
+            <div class="skills-container">
+                <!-- RPA Platforms -->
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-robot"></i>
+                        <h3>Plataformas RPA</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">UiPath</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Automation Anywhere</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Power Automate</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">Blue Prism</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">OpenRPA</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend & Cloud -->
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fab fa-python"></i>
+                        <h3>Backend & Cloud</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">AWS (EC2, CloudWatch)</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Dramatiq</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">RabbitMQ</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">Microservices</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programming Languages -->
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Linguagens de Programação</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">C#</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">SQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="beginner">
+                            <span class="skill-name">Ruby</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI & OCR -->
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-brain"></i>
+                        <h3>IA & OCR</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Document Understanding</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Complex Parsing</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">Computer Vision</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Databases & APIs -->
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Databases & APIs</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">PostgreSQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">REST APIs</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">Redis</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">Supabase</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">SQLAlchemy</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps & Tools -->
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>DevOps & Ferramentas</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Git</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Azure DevOps</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">CI/CD</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="intermediate">
+                            <span class="skill-name">Poetry</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="advanced">
+                            <span class="skill-name">Agile / Scrum</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Legend -->
+            <div class="skill-legend">
+                <div class="legend-item">
+                    <span class="legend-dot advanced"></span>
+                    <span>Avançado (80%+)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot intermediate"></span>
+                    <span>Intermediário (60-79%)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot beginner"></span>
+                    <span>Básico (40-59%)</span>
                 </div>
             </div>
         </div>
@@ -165,95 +426,6 @@
                             <li>Gerenciamento automatizado de pedidos via REST APIs</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2 class="section-title">Formação Acadêmica</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Mestrado em Física</h3>
-                    <h4>IFT-UNESP, São Paulo</h4>
-                    <span class="education-date">2020 - 2024</span>
-                    <p>Especialização em teoria quântica de campos e mecânica estatística. Desenvolvimento de simulações e biblioteca Python para formalismo de espalhamento.</p>
-                </div>
-
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-atom"></i>
-                    </div>
-                    <h3>Bacharelado em Física</h3>
-                    <h4>UNIFEI - Universidade Federal de Itajubá</h4>
-                    <span class="education-date">2016 - 2019</span>
-                    <p>Física Computacional, Matemática Avançada e Física de Semicondutores. Aplicação de Python para métodos numéricos e análise de dados.</p>
-                </div>
-
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Técnico em Informática</h3>
-                    <h4>CEFET-MG, Divinópolis</h4>
-                    <span class="education-date">2010 - 2013</span>
-                    <p>Programação e sistemas computacionais. Linguagens: Java, C/C++, HTML, PHP, JavaScript e SQL. Fundamentos de engenharia de software e redes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Habilidades</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Plataformas RPA</h3>
-                    <p>UiPath, Automation Anywhere, Power Automate, Blue Prism, OpenRPA</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <h3>Backend & Cloud</h3>
-                    <p>Python, AWS (EC2, CloudWatch), Dramatiq, RabbitMQ, Microservices</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Programação</h3>
-                    <p>Python, C#, JavaScript, Ruby, SQL, Delphi</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>IA & OCR</h3>
-                    <p>Document Understanding, Complex Parsing, Computer Vision</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Databases & APIs</h3>
-                    <p>PostgreSQL, Redis, Supabase, REST APIs, SQLAlchemy</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>DevOps & Tools</h3>
-                    <p>Git, Azure DevOps, CI/CD, Poetry, Clean Code, Agile</p>
                 </div>
             </div>
         </div>
@@ -372,6 +544,44 @@
                             <span>Em breve</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Formação Acadêmica</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Mestrado em Física</h3>
+                    <h4>IFT-UNESP, São Paulo</h4>
+                    <span class="education-date">2020 - 2024</span>
+                    <p>Especialização em teoria quântica de campos e mecânica estatística. Desenvolvimento de simulações e biblioteca Python para formalismo de espalhamento.</p>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Bacharelado em Física</h3>
+                    <h4>UNIFEI - Universidade Federal de Itajubá</h4>
+                    <span class="education-date">2016 - 2019</span>
+                    <p>Física Computacional, Matemática Avançada e Física de Semicondutores. Aplicação de Python para métodos numéricos e análise de dados.</p>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Técnico em Informática</h3>
+                    <h4>CEFET-MG, Divinópolis</h4>
+                    <span class="education-date">2010 - 2013</span>
+                    <p>Programação e sistemas computacionais. Linguagens: Java, C/C++, HTML, PHP, JavaScript e SQL. Fundamentos de engenharia de software e redes.</p>
                 </div>
             </div>
         </div>
