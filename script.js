@@ -207,5 +207,209 @@ function animateCircles() {
 
 animateCircles();
 
+// ===== Internationalization (i18n) =====
+let currentLang = 'pt'; // Default language
+
+// Get browser language
+function getBrowserLanguage() {
+    const browserLang = navigator.language || navigator.userLanguage;
+    return browserLang.startsWith('pt') ? 'pt' : 'en';
+}
+
+// Load saved language or use browser language
+function loadLanguage() {
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang) {
+        currentLang = savedLang;
+    } else {
+        currentLang = getBrowserLanguage();
+        localStorage.setItem('preferredLanguage', currentLang);
+    }
+    updateLanguageDisplay();
+    translatePage();
+}
+
+// Update language button display
+function updateLanguageDisplay() {
+    const langDisplay = document.getElementById('currentLang');
+    if (langDisplay) {
+        langDisplay.textContent = currentLang.toUpperCase();
+    }
+    // Update HTML lang attribute
+    document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+}
+
+// Translate entire page
+function translatePage() {
+    const t = translations[currentLang];
+    
+    // Navigation
+    document.querySelectorAll('.nav-link').forEach((link, index) => {
+        const navKeys = ['home', 'about', 'experience', 'education', 'skills', 'projects', 'contact'];
+        if (navKeys[index]) {
+            link.textContent = t.nav[navKeys[index]];
+        }
+    });
+    
+    // Hero section
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        heroTitle.innerHTML = `${t.hero.greeting} <span class="highlight">${t.hero.name}</span>`;
+    }
+    
+    const heroSubtitle = document.querySelector('.typing-text');
+    if (heroSubtitle) {
+        heroSubtitle.setAttribute('data-text', t.hero.subtitle);
+        // Restart typing animation
+        typeEffect();
+    }
+    
+    const heroBtns = document.querySelectorAll('.btn-primary');
+    if (heroBtns[0]) heroBtns[0].textContent = t.hero.cta1;
+    if (heroBtns[1]) heroBtns[1].textContent = t.hero.cta2;
+    
+    // About section
+    const aboutTitle = document.querySelector('#about h2');
+    if (aboutTitle) aboutTitle.textContent = t.about.title;
+    
+    const aboutDesc = document.querySelector('#about .about-text p');
+    if (aboutDesc) aboutDesc.textContent = t.about.description;
+    
+    const stats = document.querySelectorAll('.stat');
+    if (stats.length >= 3) {
+        stats[0].querySelector('h3').textContent = t.about.stat1Value;
+        stats[0].querySelector('p').textContent = t.about.stat1Label;
+        stats[1].querySelector('h3').textContent = t.about.stat2Value;
+        stats[1].querySelector('p').textContent = t.about.stat2Label;
+        stats[2].querySelector('h3').textContent = t.about.stat3Value;
+        stats[2].querySelector('p').textContent = t.about.stat3Label;
+    }
+    
+    // Experience section
+    const expTitle = document.querySelector('#experience h2');
+    if (expTitle) expTitle.textContent = t.experience.title;
+    
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        if (t.experience.jobs[index]) {
+            const job = t.experience.jobs[index];
+            item.querySelector('h3').textContent = job.title;
+            item.querySelector('h4').textContent = job.company;
+            item.querySelector('.timeline-date').textContent = job.date;
+            
+            const listItems = item.querySelectorAll('li');
+            listItems.forEach((li, i) => {
+                if (job.items[i]) {
+                    li.textContent = job.items[i];
+                }
+            });
+        }
+    });
+    
+    // Education section
+    const eduTitle = document.querySelector('#education h2');
+    if (eduTitle) eduTitle.textContent = t.education.title;
+    
+    const eduCards = document.querySelectorAll('.education-card');
+    eduCards.forEach((card, index) => {
+        if (t.education.degrees[index]) {
+            const degree = t.education.degrees[index];
+            card.querySelector('h3').textContent = degree.degree;
+            card.querySelector('h4').textContent = degree.institution;
+            card.querySelector('.education-date').textContent = degree.date;
+            card.querySelector('p').textContent = degree.description;
+        }
+    });
+    
+    // Skills section
+    const skillsTitle = document.querySelector('#skills h2');
+    if (skillsTitle) skillsTitle.textContent = t.skills.title;
+    
+    const skillCards = document.querySelectorAll('.skill-card');
+    skillCards.forEach((card, index) => {
+        if (t.skills.categories[index]) {
+            const category = t.skills.categories[index];
+            card.querySelector('h3').textContent = category.title;
+            
+            const skillItems = card.querySelectorAll('.skill-item');
+            skillItems.forEach((item, i) => {
+                if (category.items[i]) {
+                    item.textContent = category.items[i];
+                }
+            });
+        }
+    });
+    
+    // Projects section
+    const projectsTitle = document.querySelector('#projects h2');
+    if (projectsTitle) projectsTitle.textContent = t.projects.title;
+    
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach((card, index) => {
+        const infoDiv = card.querySelector('.project-info');
+        if (infoDiv && index < 3) { // Only translate the first 3 projects (real ones)
+            const project = t.projects.items[index];
+            if (project) {
+                infoDiv.querySelector('h3').textContent = project.title;
+                infoDiv.querySelector('p').textContent = project.description;
+                
+                const tags = infoDiv.querySelectorAll('.project-tags span');
+                tags.forEach((tag, i) => {
+                    if (project.tags[i]) {
+                        tag.textContent = project.tags[i];
+                    }
+                });
+            }
+        }
+        
+        // Update button texts for all projects
+        const links = card.querySelectorAll('.project-link');
+        if (links.length >= 2) {
+            links[0].setAttribute('title', index < 3 ? t.projects.viewDemo : t.projects.comingSoon);
+            links[1].setAttribute('title', index < 3 ? t.projects.viewCode : t.projects.comingSoon);
+        }
+    });
+    
+    // Contact section
+    const contactTitle = document.querySelector('#contact h2');
+    if (contactTitle) contactTitle.textContent = t.contact.title;
+    
+    const contactSubtitle = document.querySelector('#contact .section-subtitle');
+    if (contactSubtitle) contactSubtitle.textContent = t.contact.subtitle;
+    
+    const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+    if (formInputs[0]) formInputs[0].placeholder = t.contact.namePlaceholder;
+    if (formInputs[1]) formInputs[1].placeholder = t.contact.emailPlaceholder;
+    if (formInputs[2]) formInputs[2].placeholder = t.contact.messagePlaceholder;
+    
+    const sendBtn = document.querySelector('.btn-primary[type="submit"]');
+    if (sendBtn) sendBtn.textContent = t.contact.sendButton;
+    
+    const locationP = document.querySelector('.contact-item p');
+    if (locationP && locationP.textContent.includes('Divinópolis') || locationP.textContent.includes('Brazil')) {
+        locationP.textContent = t.contact.location;
+    }
+    
+    // Footer
+    const footerText = document.querySelector('.footer p');
+    if (footerText) {
+        footerText.innerHTML = `&copy; 2026 Wescley Dimas. ${t.footer.rights}`;
+    }
+}
+
+// Language toggle button
+const langToggle = document.getElementById('langToggle');
+if (langToggle) {
+    langToggle.addEventListener('click', () => {
+        currentLang = currentLang === 'pt' ? 'en' : 'pt';
+        localStorage.setItem('preferredLanguage', currentLang);
+        updateLanguageDisplay();
+        translatePage();
+    });
+}
+
+// Initialize language on page load
+loadLanguage();
+
 console.log('🚀 Portfólio carregado com sucesso!');
 console.log('💡 Desenvolvido com ❤️');
