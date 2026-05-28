@@ -4,7 +4,173 @@ Este documento detalha os principais projetos de RPA e automação desenvolvidos
 
 ---
 
-## 🤖 1. WindBorne - Plataforma de Automação Financeira
+## 🤖 1. Autonomous Job Seeker Agent
+
+**Status:** ✅ Em Produção  
+**Repositório:** https://github.com/wcdimas/job_seeker
+
+### Descrição
+Agente autônomo totalmente automatizado que atua como seu recrutador técnico pessoal. Ele automaticamente realiza scraping no LinkedIn em busca de vagas, usa IA da Google (Gemini) para avaliar sua adequação ao cargo, gera um CV personalizado em PDF e envia emails de candidatura altamente personalizados para recrutadores via Microsoft Graph API. Inclui um Dashboard Web elegante para monitorar todas as atividades.
+
+### Principais Funcionalidades
+
+#### 🔍 LinkedIn Scraper
+- Usa Selenium para scroll dinâmico e extração de postagens de vagas recentes
+- Filtros customizáveis por:
+  - Keywords (ex: "rpa" AND "python")
+  - Data de publicação (last-24-hours, past-week, past-month, etc.)
+  - Localização e tipo de emprego
+- Smart rate limiting para respeitar limites da plataforma
+
+#### 🧠 Avaliação com IA (Gemini 3.1 Flash Lite)
+- Análise automática de descrições de vagas contra seu currículo
+- Geração de "Match Score" (pontuação de compatibilidade)
+- Identificação de skills exatas que você possui
+- Raciocínio detalhado do LLM sobre o fit
+- Respeita quotas da API gratuita do Gemini
+
+#### 📄 Dynamic Resume Builder
+- Geração automática de CV profissional em PDF
+- Personalizado para cada empresa específica
+- Usa WeasyPrint para renderização de alta qualidade
+- Design responsivo e moderno
+
+#### 📧 Automated Email Outreach
+- Redação de emails HTML altamente persuasivos
+- Destaque automático das skills que fazem match
+- Envio via Microsoft Graph API (O365/Outlook/Hotmail)
+- Templates customizáveis por idioma
+- Taxa de entrega otimizada
+
+#### 📊 Web Dashboard
+- Interface FastAPI + Vanilla JS elegante
+- Visualização em tempo real de:
+  - Todas as vagas scrapadas
+  - Raciocínio do LLM para cada vaga
+  - Emails gerados
+  - Drafts de convites de conexão
+- Responsivo para acesso via mobile
+- Atualização ao vivo via polling
+
+### Tecnologias Utilizadas
+- **Backend:** Python 3.10+, FastAPI, Poetry
+- **Web Scraping:** Selenium, Chrome WebDriver
+- **IA:** Google Gemini API (gemini-1.5-flash)
+- **PDF Generation:** WeasyPrint, GTK3
+- **Email:** Microsoft Graph API (OAuth2)
+- **Database:** SQLite (para logs e histórico)
+- **Frontend:** Vanilla JavaScript, CSS3
+- **Deploy:** Configurável para executar local ou em servidor
+
+### Arquitetura
+```
+LinkedIn Scraping (Selenium)
+         ↓
+   Raw Job Data (JSON)
+         ↓
+Google Gemini Analysis → Match Score + Skills
+         ↓
+Resume Builder (WeasyPrint) → Custom PDF
+         ↓
+Email Composer (Jinja2) → HTML Email
+         ↓
+Microsoft Graph API → Automated Send
+         ↓
+   Web Dashboard (FastAPI) → Real-time Monitoring
+```
+
+### Configuração e Setup
+1. **Pré-requisitos:**
+   - Python 3.10+
+   - Poetry para gerenciamento de dependências
+   - Google Gemini API Key
+   - Microsoft Azure App credentials
+   - Google Chrome instalado
+   - GTK3 para WeasyPrint (Windows)
+
+2. **Instalação:**
+   ```bash
+   git clone https://github.com/wcdimas/job_seeker.git
+   cd job_seeker
+   poetry install
+   ```
+
+3. **Configuração:**
+   - Copiar `.env.example` para `.env`
+   - Preencher credenciais (Gemini API, Azure App, etc.)
+   - Copiar `resume.example.json` para `data/resume.json`
+   - Personalizar com seus dados reais
+
+4. **Autenticação Microsoft Graph:**
+   ```bash
+   poetry run python tests/test_email_self.py
+   ```
+   - Abre URL de autorização
+   - Fazer login na conta Microsoft
+   - Consentir permissões
+   - Colar URL de redirect no console
+
+### Uso
+
+#### Executar o Agente Autônomo
+```bash
+# Modo padrão (usa configurações do .env)
+poetry run python run_job_seeker.py
+
+# Com argumentos customizados
+poetry run python run_job_seeker.py \
+  --keyword '"rpa" AND "python"' \
+  --date-filter "past-week" \
+  --max-hours 168
+```
+
+#### Acessar o Dashboard
+```bash
+poetry run uvicorn src.job_seeker.web.api:app \
+  --host 0.0.0.0 \
+  --port 8000 \
+  --reload
+```
+Abrir `http://localhost:8000` no navegador
+
+### Recursos de Segurança
+- `.gitignore` estrito para proteger dados sensíveis
+- Pasta `data/` não é commitada (contém currículo e PDFs)
+- Tokens e senhas armazenadas em `.env` (não versionado)
+- OAuth2 flow seguro para Microsoft Graph
+- Logs sanitizados sem credenciais
+
+### Métricas de Impacto
+- ⏱️ **Economia de Tempo:** Redução de 90%+ no tempo de busca de emprego
+- 📈 **Volume:** Capacidade de processar 50+ vagas por dia
+- 🎯 **Precisão:** Match scoring com IA identifica as melhores oportunidades
+- 📧 **Automação:** Emails personalizados enviados automaticamente
+- 📊 **Visibilidade:** Dashboard centralizado para todas as atividades
+
+### Diferenciais Técnicos
+1. **Scraping Inteligente:** Scrolling infinito com detecção de fim de página
+2. **IA Contextual:** Gemini analisa fit técnico E cultural
+3. **Personalização:** CVs únicos por empresa com branding consistente
+4. **Rate Limiting:** Respeita limites de APIs (Gemini free tier)
+5. **Monitoramento:** Dashboard real-time com logs estruturados
+6. **Escalabilidade:** Arquitetura modular e extensível
+
+### Casos de Uso
+- **Candidatos em busca ativa:** Automatizar aplicações em massa
+- **Networking estratégico:** Convites de conexão direcionados
+- **Market research:** Análise de tendências de vagas
+- **Personal branding:** CVs customizados por empresa
+
+### Roadmap Futuro
+- [ ] Integração com outros job boards (Indeed, Glassdoor)
+- [ ] Sistema de follow-up automático
+- [ ] Analytics avançado (taxa de resposta, melhores horários)
+- [ ] Templates de email A/B testing
+- [ ] Integração com calendário para entrevistas
+
+---
+
+## 💰 2. WindBorne - Plataforma de Automação Financeira
 
 **Status:** ✅ Em Produção  
 **Live Demo:** https://windborne-s220.onrender.com  
@@ -69,7 +235,7 @@ Alpha Vantage API → Extração (Python) → Raw JSON
 
 ---
 
-## 💼 2. Sistema de Vendas Automatizado (Mesha Tecnologia)
+## 💼 3. Sistema de Vendas Automatizado (Mesha Tecnologia)
 
 **Status:** ✅ Completo  
 **Repositório:** https://github.com/wcdimas/Mesha-Tecnologia
@@ -186,7 +352,7 @@ Cadastro Web/JSON → Banco SQLite → Monitor Watchdog
 
 ---
 
-## 🌐 3. NY Times Scraping Dockerizado
+## 🌐 4. NY Times Scraping Dockerizado
 
 **Status:** ✅ Completo  
 **Repositório:** https://github.com/wcdimas/nytimes-scrapping-docker
